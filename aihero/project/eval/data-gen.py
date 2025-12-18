@@ -11,8 +11,8 @@ from tqdm.auto import tqdm
 from pydantic import BaseModel
 from pydantic_ai import Agent
 
-from project.main import initialize_index, initialize_agent
-from project.logs import log_interaction_to_file, LOG_DIR
+from main import initialize_index, initialize_agent
+from logs import log_interaction_to_file, LOG_DIR
 
 question_generation_prompt = """
 You are helping to create test questions for an AI agent that answers questions about a data engineering course.
