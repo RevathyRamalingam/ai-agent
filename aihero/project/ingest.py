@@ -32,19 +32,20 @@ def sliding_window(seq, size, step):
     for i in range(0,n,step):
         batch = seq[i:i+size]
         result.append({'start':i,'content':batch})
-        if(i+size>n):   
+        if(i+size >= n):   
             break
     return result
 
-def chunk_documents(docs, size=2000,step=1000):
-    chunks =[]
+def chunk_documents(docs, size=2000, step=1000):
+    chunks = []
     for doc in docs:
-        doc_copy= doc.copy()
-        doc_content=doc_copy.pop('content')
-        doc_chunks =sliding_window(doc_content,size=size,step=step)
+        doc_copy = doc.copy()
+        doc_content = doc_copy.pop('content')
+        doc_chunks = sliding_window(doc_content, size=size, step=step)
         for chunk in doc_chunks:
-            chunk.update(doc_copy)
-            chunks.extend(doc_chunks)
+            chunk_copy = chunk.copy()
+            chunk_copy.update(doc_copy)
+            chunks.append(chunk_copy)
     return chunks
 
 def index_data(repo_owner, repo_name, filter =None,chunk= True,chunking_params=None):

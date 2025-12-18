@@ -27,5 +27,5 @@ def init_agent(index, repo_owner,repo_name):
         tools=[s_tool.search],
         model='gpt-4o-mini'
     )   
-    print("Agent initiaized is :",agent)
+    print("Agent initialized is :",agent)
     return agent

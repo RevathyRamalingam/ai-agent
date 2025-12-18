@@ -4,28 +4,25 @@ import logs
 import search_agent
 import asyncio
 
-REPO_OWNER="RevathyRamalingam"
-REPO_NAME="machinelearning"
-
-def initialize_index():
-    print(f"Starting FAQ AI Assistant for {REPO_OWNER}/{REPO_NAME}")
+def initialize_index(repo_owner, repo_name):
+    print(f"Starting CodeRepository QA Assistant for {repo_owner}/{repo_name}")
     print("Initializing DataIngestion...")
-    def filter(doc):
-        return 'data-engineering' in doc['filename']
-    index = ingest.index_data(REPO_OWNER,REPO_NAME)
+    index = ingest.index_data(repo_owner, repo_name,chunk=True)
     print("Data Indexing done successfully")
     return index
 
-def initialize_agent(index):
+def initialize_agent(index, repo_owner, repo_name):
     print("Agent initialization started..")
-    agent = search_agent.init_agent(index,REPO_OWNER,REPO_NAME)
+    agent = search_agent.init_agent(index, repo_owner, repo_name)
     print("Agent Initialization completed..")
     return agent
 
 def main():
-    print("Welcome to FAQ Agent developed by Revathy!")
-    index=initialize_index()
-    agent = initialize_agent(index)
+    print("Welcome to CodeRepository QA Assistant developed by Revathy Ramalingam!")
+    repo_owner = input("Enter your GitHub username: ")
+    repo_name = input("Enter your GitHub repository name: ")
+    index = initialize_index(repo_owner, repo_name)
+    agent = initialize_agent(index, repo_owner, repo_name)
     print("Now the Agent is ready to answer your queries")
     print("Type 'stop' to exit the program")
 

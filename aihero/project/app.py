@@ -5,12 +5,9 @@ import logs
 import search_agent
 import asyncio
 
-REPO_OWNER = "RevathyRamalingam"
-REPO_NAME = "machinelearning"
-
 # Configure page
 st.set_page_config(
-    page_title="FAQ AI Assistant",
+    page_title="CodeRepository QA Assistant",
     page_icon="🤖",
     layout="wide"
 )
@@ -24,41 +21,47 @@ if 'messages' not in st.session_state:
     st.session_state.messages = []
 if 'initialized' not in st.session_state:
     st.session_state.initialized = False
+if 'repo_owner' not in st.session_state:
+    st.session_state.repo_owner = ""
+if 'repo_name' not in st.session_state:
+    st.session_state.repo_name = ""
 
-def initialize_index():
+def initialize_index(repo_owner, repo_name):
     """Initialize the data index"""
-    with st.spinner(f"Initializing data ingestion for {REPO_OWNER}/{REPO_NAME}..."):
-        def filter_func(doc):
-            return 'data-engineering' in doc['filename']
-        index = ingest.index_data(REPO_OWNER, REPO_NAME)
+    with st.spinner(f"Initializing data ingestion for {repo_owner}/{repo_name}..."):
+        index = ingest.index_data(repo_owner, repo_name)
         st.success("Data indexing completed successfully!")
         return index
 
-def initialize_agent(index):
+def initialize_agent(index, repo_owner, repo_name):
     """Initialize the search agent"""
     with st.spinner("Initializing AI agent..."):
-        agent = search_agent.init_agent(index, REPO_OWNER, REPO_NAME)
+        agent = search_agent.init_agent(index, repo_owner, repo_name)
         st.success("Agent initialized successfully!")
         return agent
 
 def main():
     # Header
-    st.title("🤖 FAQ AI Assistant")
-    st.markdown(f"### Repository: `{REPO_OWNER}/{REPO_NAME}`")
+    st.title("🤖 CodeRepository QA Assistant")
+    if st.session_state.initialized:
+        st.markdown(f"### Repository: `{st.session_state.repo_owner}/{st.session_state.repo_name}`")
     st.markdown("---")
     
     # Sidebar
     with st.sidebar:
         st.header("About")
-        st.info("This AI assistant helps you find answers from the FAQ repository.")
-        st.markdown("**Developer:** Revathy")
+        st.info("This QA assistant helps you find answers about any GITHUB Code repository.")
+        st.markdown("**Developer:** Revathy Ramalingam")
         
-        # Initialize button
+        # Initialization inputs
         if not st.session_state.initialized:
-            if st.button("🚀 Initialize Agent", use_container_width=True):
+            st.session_state.repo_owner = st.text_input("GitHub Username", value=st.session_state.repo_owner)
+            st.session_state.repo_name = st.text_input("Repository Name", value=st.session_state.repo_name)
+            
+            if st.button("🚀 Initialize Agent", use_container_width=True, disabled=not (st.session_state.repo_owner and st.session_state.repo_name)):
                 try:
-                    st.session_state.index = initialize_index()
-                    st.session_state.agent = initialize_agent(st.session_state.index)
+                    st.session_state.index = initialize_index(st.session_state.repo_owner, st.session_state.repo_name)
+                    st.session_state.agent = initialize_agent(st.session_state.index, st.session_state.repo_owner, st.session_state.repo_name)
                     st.session_state.initialized = True
                     st.rerun()
                 except Exception as e:
