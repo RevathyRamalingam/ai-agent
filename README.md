@@ -25,5 +25,12 @@ This project AI-Agent aims to build anAI Agent similar to DeepWiki that can answ
 
 1. Clone the repository
 2. pip install -r requirements.txt
-3. Run the main.py file
-4. The AI Agent will start running and you can ask it questions
+3. Make sure to set the OPENAI_API_KEY in the environment variables 
+4. Run the main.py file
+    uv run streamlit run app.py
+5. The AI Agent will start running and you can ask it questions
+
+
+## Acknowledgement
+
+Thanks to Alexey Grigorev for the course on AI Agents. If you are someone who is interested in AI Agents like me, I highly recommend his course. It's completely free.
