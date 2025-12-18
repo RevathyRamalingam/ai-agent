@@ -13,6 +13,17 @@ AI agents can be found in various applications, such as virtual personal assista
 
 This project AI-Agent aims to build anAI Agent similar to DeepWiki that can answer queries about your repository.
 
+## Folder
+
+1. aihero - The main folder that contains the AI Agent
+2. aihero/project - The folder that contains the AI Agent
+3. aihero/project/eval - The folder that contains the evaluation files
+4. aihero/project/eval/data-gen.py - The file that generates the data for evaluation
+5. aihero/project/eval/evaluations.py - The file that contains the evaluation files
+6. aihero/screenshot - The folder that contains the screenshots of the FAQ AI Assistant
+7. aihero/course - The folder that contains the course files
+8. aihero/course/requirements.txt - The file that contains the requirements for the project to build
+
 ##Files
 
 1. main.py - The main file that runs the AI Agent
@@ -28,8 +39,9 @@ This project AI-Agent aims to build anAI Agent similar to DeepWiki that can answ
 3. Make sure to set the OPENAI_API_KEY in the environment variables 
 4. Run the main.py file
     uv run streamlit run app.py
-5. The AI Agent will start running and you can ask it questions
-
+5. The AI Agent will start running and you can ask it questions about your repository
+6. The AI Agent will answer your questions
+7. The AI Agent will also provide you with the source code of the repository
 
 ## Acknowledgement
 
