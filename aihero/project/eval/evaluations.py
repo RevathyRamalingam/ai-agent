@@ -11,7 +11,7 @@ from tqdm.auto import tqdm
 from pydantic import BaseModel
 from pydantic_ai import Agent
 
-from project.logs import LOG_DIR
+from logs import LOG_DIR
 
 evaluation_prompt = """
 Use this checklist to evaluate the quality of an AI agent's answer (<ANSWER>) to a user question (<QUESTION>).
