@@ -13,7 +13,7 @@ This QA Assistant uses hybrid search to answer questions about your repository. 
 5. aihero/project/screenshot - The folder that contains the screenshots of the FAQ AI Assistant
 6. aihero/project/requirements.txt - The file that contains the requirements for the project to build
 
-##Files
+## Files
 
 1. main.py - The main file that runs the AI Agent
 2. ingest.py - The file that ingests the data from the repository
@@ -27,10 +27,14 @@ This QA Assistant uses hybrid search to answer questions about your repository. 
 2. pip install -r requirements.txt
 3. Make sure to set the OPENAI_API_KEY in the environment variables 
 4. Run the app.py file that opens an interactive streamlit UI where the user can ask questions about the repository
+
     uv run streamlit run app.py 
+
     The browser opens at Local URL: http://localhost:8501 to answer your questions about the GITHUB repository of your choice
     You can also run locally using the below command
-    uv run python main.py  This can start the agent locally in your machine and you can ask it questions about your repository
+
+    uv run python main.py    This can start the agent locally in your machine and you can ask it questions about your repository
+
 5. The AI Agent will start running and you can ask it questions about your repository
 6. The AI Agent will answer your questions
 7. The AI Agent will also provide you with the source code of the repository
@@ -45,4 +49,4 @@ Currently this project works for all GitHub repositories. In the future, we can 
 
 ## Acknowledgement
 
-Thanks to Alexey Grigorev for the course on AI Agents. This course was very helpful in building this project.   
+Thanks to Alexey Grigorev for the course on AI Agents. This course was very helpful in building this project that creates an AI Agent from scratch using PydanticAI APIs, uses minsearch python library for hybrid search and uses Streamlit to create an interactive UI.   
