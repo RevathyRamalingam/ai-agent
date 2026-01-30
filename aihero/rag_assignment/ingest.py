@@ -56,8 +56,7 @@ def read_repo_data(url_path):
     repository_data = []
     # Read PDF content
     pdf_file = BytesIO(resp.content)
-    #pdf_reader = PyPDF2.PdfReader(pdf_file)
-    pdf_reader = PyPDF2.PdfReader("sample.pdf")
+    pdf_reader = PyPDF2.PdfReader(pdf_file)
     # Extract text from all pages
     text_content = ''
     for page in pdf_reader.pages:

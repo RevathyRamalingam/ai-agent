@@ -1,5 +1,10 @@
 import search_tool
 from pydantic_ai import Agent
+from pydantic_ai.models.groq import GroqModel
+
+groq_model = GroqModel(
+    model_name="llama-3.1-8b-instant",  # or llama3-70b-8192
+)
 
 SYSTEM_PROMPT_TEMPLATE = """
 You are a helpful assistant that answers questions about documentation.  
@@ -19,7 +24,7 @@ def init_agent(index):
         name="gh_agent",
         instructions=system_prompt,
         tools=[s_tool.search],
-        model='gpt-4o-mini'
+        model=groq_model
     )   
     print("Agent initialized is :",agent)
     return agent
